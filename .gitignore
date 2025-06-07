@@ -1,0 +1,22 @@
+# Environnements virtuels
+mesvenvs/
+
+# Fichiers de sortie
+output/
+
+# Fichiers temporaires
+*.tmp
+*.bak
+*.swp
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Fichiers PyCharm
+.idea/
+*.iml
+
+# Fichiers Blender
+*.blend1
+*.blend2.idea/
