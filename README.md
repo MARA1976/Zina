@@ -115,7 +115,7 @@ MIT - Libre pour usage éducatif/commercial. Inclut une clause de non-responsabi
 ---
 
 ### ✅ **Ce README inclut** :  
-1. **Workflow validé** (100% open-source, sans Google)  
+1. **Workflow validé** (100% open-source)  
 2. **Gestion d'erreurs détaillée** avec boucle de fallback  
 3. **Structure de projet** claire  
 4. **Commandes prêtes à l'emploi**  
