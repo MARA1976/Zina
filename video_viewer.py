@@ -8,6 +8,8 @@ Licence MIT - https://opensource.org/license/mit/
 import streamlit as st
 import os
 import subprocess
+from logger_config import log_error, log_warning
+
 
 
 def main():

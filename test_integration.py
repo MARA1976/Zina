@@ -9,7 +9,7 @@ import os
 import time
 from moviepy import CompositeVideoClip
 from moviepy.video.VideoClip import TextClip, ColorClip
-
+from logger_config import log_error, log_warning
 
 def create_test_video(output_path="test_output.mp4"):
     """Crée une vidéo de test avec MoviePy v2.1.2"""

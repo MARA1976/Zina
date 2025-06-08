@@ -4,7 +4,7 @@ Zina - Module d'animation éducative
 Copyright © 2024 HikayatData (https://www.hikayatdata.com)
 Licence MIT - https://opensource.org/license/mit/
 """
-
+from logger_config import log_error, log_warning
 # check_modules.py
 def verify_moviepy():
     try:

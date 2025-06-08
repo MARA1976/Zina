@@ -1,3 +1,5 @@
+
+
 # test_python_packages.py
 import cv2
 from PIL import Image
@@ -5,7 +7,7 @@ import numpy as np
 import imageio
 import requests
 from tqdm import tqdm
-
+from logger_config import log_error, log_warning
 print("=== Test des packages installés ===")
 
 # Test OpenCV
