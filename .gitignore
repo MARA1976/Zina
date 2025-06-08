@@ -50,3 +50,6 @@ config_local.py
 # Fichiers Blender
 *.blend1
 *.blend2
+# Fichiers spécifiques  workflow
+/assets/raw/  # Dossiers d'assets bruts
+/tests/output/  # Sorties de test
