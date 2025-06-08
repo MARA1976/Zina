@@ -1,0 +1,62 @@
+### 🐍 Python ###
+
+# Virtual environments
+zina_env/
+venv/
+.env/
+
+# Cache files
+__pycache__/
+*.py[cod]
+
+# Generated output files
+output/
+*.mp4
+*.log
+*.png  # Excludes temporary screenshots
+
+### 🎥 MoviePy/FFmpeg ###
+
+# Temporary media files
+.tmp
+*.temp.*
+*.bak
+
+### 🖥️ System ###
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+### 🔧 IDEs ###
+
+# PyCharm
+.idea/
+*.iml
+*.workspace
+
+# VS Code
+.vscode/
+*.code-workspace
+
+### 🗃️ Miscellaneous ###
+
+# Backup files
+*.swp
+*~
+~$*
+
+# Sensitive files
+secrets.py
+config_local.py
+
+### 🎨 Temporary Assets ###
+
+# Blender files
+*.blend1
+*.blend2
+
+# Workflow-specific directories
+/assets/raw/  # Raw assets folder
+/tests/output/  # Test outputs

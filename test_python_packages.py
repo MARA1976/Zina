@@ -1,5 +1,3 @@
-
-
 # test_python_packages.py
 import cv2
 from PIL import Image
@@ -8,6 +6,7 @@ import imageio
 import requests
 from tqdm import tqdm
 from logger_config import log_error, log_warning
+
 print("=== Test des packages installés ===")
 
 # Test OpenCV
@@ -28,11 +27,13 @@ Licence MIT - https://opensource.org/license/mit/
 try:
     # Essayer la version 2.x
     import moviepy
+
     print(f"moviePy version: {moviepy.__version__} (v2)")
 except (ImportError, AttributeError):
     try:
         # Fallback sur la version 1.x
         from moviepy.editor import __version__ as moviepy_v1_version
+
         print(f"moviePy version: {moviepy_v1_version} (v1)")
     except ImportError:
         print("moviePy: NON INSTALLÉ")
