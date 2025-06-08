@@ -93,20 +93,62 @@ zinacartoon/
 3. **Journal des erreurs** :  
    ```python  
    logging.basicConfig(filename='errors.log', level=logging.ERROR)  
-   ```  
+   ```
 
----
+```markdown
+## 🐞 Gestion des Bugs & Logs
 
-## 👥 Contribution  
-1. **Signaler un bug** :  
-   ```bash  
-   python test_integration.py 2> bug_report.txt  
-   ```  
-2. **Envoyer une PR** vers `Dev` avec :  
-   - Le fichier modifié  
-   - Le test associé  
+### 📝 Journal des erreurs
+Les erreurs sont automatiquement enregistrées dans :
+```
+logs/
+└── zina_bugs.log  # Format : [TIMESTAMP] LEVEL - fichier:ligne - message
+```
 
----
+# **Pour logger une erreur** :
+
+```python
+from logger_config import log_error
+
+try:
+    # Code métier
+except Exception as e:
+    log_error("Contexte", e)  # Ex: "Échec render TextClip"
+```
+
+### 👥 Contribution
+1. **Signaler un bug** :
+   ```bash
+   # Méthode 1 (automatique)
+   cat logs/zina_bugs.log | grep "CRITICAL"  # Bugs majeurs
+
+   # Méthode 2 (manuel)
+   python test_integration.py 2> bug_report.txt
+   ```
+
+2. **Envoyer une PR** vers `Dev` avec :
+   - Le correctif + tests
+   - Le contexte d'erreur (extrait de zina_bugs.log si pertinent)
+   ```python
+   # Template de test recommandé
+   def test_error_handling():
+       from logger_config import log_error
+       with pytest.raises(ExpectedError):
+           log_error("Test", ExpectedError("Message"))
+   ```
+
+### 🔍 Debug rapide
+```bash
+# Vérifier les 5 dernières erreurs
+tail -n 5 logs/zina_bugs.log
+
+# Filtrer les erreurs TextClip
+grep "TextClip" logs/zina_bugs.log
+```
+
+> **Note** : Le fichier reste vide jusqu'à la première erreur rencontrée.
+```
+
 
 ## 📜 Licence  
 MIT - Libre pour usage éducatif/commercial. Inclut une clause de non-responsabilité pour les artefacts générés.  
