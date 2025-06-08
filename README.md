@@ -1,98 +1,123 @@
 
-© 2025 HikayatData
-[![License: MIT](https://img.shields.io/badge/License-MIT-HikayatData-blue.svg)](https://opensource.org/licenses/MIT)
-# Projet Zina - Système d'Animation Éducative
+# Projet Zina - Système d'Animation Éducative  
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-HikayatData-blue.svg)](https://opensource.org/licenses/MIT)  
+[![GitHub last commit](https://img.shields.io/github/last-commit/MARA1976/zinacartoon/Dev?color=green&label=Dernière%20mise%20à%20jour)](https://github.com/MARA1976/zinacartoon/commits/Dev)  
+[![Python 3.12](https://img.shields.io/badge/Python-3.12+-blue.svg)](https://www.python.org/downloads/)  
 
-Système de création de cartoons éducatifs pour enfants utilisant Python et MoviePy.
+© 2025 [HikayatData](https://www.hikayatdata.com)  
+**Dernière mise à jour** : 07/06/2025  
 
-## 🚀 Configuration Express (5 minutes)
+---
 
-### 1. Prérequis système
-```bash
-sudo apt update && sudo apt install -y ffmpeg python3.12 python3.12-venv git
+## 📝 Description  
+Système de création de cartoons éducatifs pour enfants (8-12 ans) utilisant Python et MoviePy, avec gestion robuste des erreurs et workflow open-source.  
+
+---
+
+## 🚀 Workflow Officiel  
+### 1. **Environnement**  
+```bash  
+git clone https://github.com/MARA1976/zinacartoon.git  
+cd zinacartoon  
+python3.12 -m venv zina_env  
+source zina_env/bin/activate  # Linux/Mac  
+zina_env\Scripts\activate    # Windows  
 ```
 
-### 2. Cloner et configurer
-```bash
-git clone https://github.com/MARA1976/zinacartoon.git
-cd zinacartoon
-python3.12 -m venv zina_env
-source zina_env/bin/activate
+### 2. **Installation**  
+```bash  
+pip install -r requirements.txt  
 ```
 
-### 3. Installer les dépendances
-```bash
-pip install --upgrade pip
-pip install -r requirements.txt
+### 3. **Workflow Principal**  
+```mermaid  
+flowchart TD  
+    A[Assets] --> B(test_integration.py)  
+    B --> C{Succès ?}  
+    C -->|Oui| D[video_viewer.py]  
+    C -->|Non| E[Fallback Mode]  
 ```
 
-## 🎬 Première utilisation
+---
 
-### Tester MoviePy
-```bash
-python test_integration.py  # Génère test_output.mp4
+## 🔄 Migration depuis MoviePy v1 → v2  
+### 🛡️ Gestion Automatique des Erreurs  
+```python  
+max_attempts = 3  # Tentatives avant fallback  
+
+for attempt in range(max_attempts):  
+    try:  
+        # Essai version moderne (v2)  
+        from moviepy import TextClip  
+        text = TextClip(text="Hello", font_size=50)  
+        break  
+    except (ImportError, AttributeError):  
+        if attempt == max_attempts - 1:  # Fallback v1  
+            from moviepy.editor import TextClip  
+            text = TextClip(txt="Hello", fontsize=50)  
 ```
 
-### Visualiser dans Streamlit
-```bash
-streamlit run video_viewer.py
-```
-➡️ Ouvre automatiquement http://localhost:8501
+### 📌 Bugs Courants  
+| Erreur                          | Solution                        |  
+|---------------------------------|---------------------------------|  
+| `AttributeError: with_position` | Utiliser `set_position()` en v1 |  
+| `TypeError: text=`              | Remplacer par `txt=` en v1      |  
+| `ImportError`                   | Vérifier `moviepy.__version__`  |  
 
-## 📦 Configuration MoviePy
+---
 
-### Fichier `requirements.txt` optimisé :
-```txt
-moviepy==2.2.1  # Version stable recommandée
-numpy==2.2.6
-opencv-python==4.11.0.86
-pillow==11.2.1
-imageio[ffmpeg]==2.37.0  # Gestion FFmpeg
-streamlit==1.35.0  # Dashboard
-```
-
-### Code compatible v2.2.1 :
-```python
-from moviepy import VideoFileClip, TextClip  # Nouvel import
-
-clip = VideoFileClip("input.mp4")
-text = TextClip(
-    text="Bonjour Zina",
-    fontsize=70,
-    color='white',
-    font='Arial',
-    size=(800, 100)
+## 🏗️ Structure du Projet  
+```  
+zinacartoon/  
+├── assets/           # PNG/audio  
+├── output/           # Vidéos générées  
+├── scripts/          # Modules métier  
+│   ├── fallbacks.py  # Mode dégradé  
+│   └── utils.py      # Gestion erreurs  
+├── tests/            # Tests unitaires  
+└── requirements.txt  # Python 3.12+  
 ```
 
-## 🔄 Migration depuis MoviePy v1
-| Ancien (v1)                  | Nouveau (v2)               |
-|------------------------------|----------------------------|
-| `from moviepy.editor import`  | `from moviepy import`       |
-| `clip.set_position()`         | `clip.with_position()`      |
-| `clip.set_duration(5)`        | `clip.with_duration(5)`     |
+---
 
-## 📂 Structure du projet
-```
-zinacartoon/
-├── assets/           # Assets visuels
-├── output/           # Vidéos générées
-├── scripts/          # Scripts métier
-├── tests/            # Tests unitaires
-├── test_integration.py  # Test vidéo
-├── video_viewer.py   # Dashboard Streamlit
-└── requirements.txt  # Dépendances
+## 🛠️ Bonnes Pratiques  
+1. **Toujours travailler sur `Dev`** :  
+   ```bash  
+   git checkout Dev  
+   ```  
+2. **Vérifier les dépendances** :  
+   ```bash  
+   pip list | grep moviepy  
+   ```  
+3. **Journal des erreurs** :  
+   ```python  
+   logging.basicConfig(filename='errors.log', level=logging.ERROR)  
+   ```  
+
+---
+
+## 👥 Contribution  
+1. **Signaler un bug** :  
+   ```bash  
+   python test_integration.py 2> bug_report.txt  
+   ```  
+2. **Envoyer une PR** vers `Dev` avec :  
+   - Le fichier modifié  
+   - Le test associé  
+
+---
+
+## 📜 Licence  
+MIT - Libre pour usage éducatif/commercial. Inclut une clause de non-responsabilité pour les artefacts générés.  
 ```
 
-## 💡 Bonnes pratiques
-1. Toujours utiliser `zina_env` :
-   ```bash
-   source zina_env/bin/activate
-   ```
-2. Pour régénérer les dépendances :
-   ```bash
-   pip freeze > requirements.txt
-   ```
-3. Documentation MoviePy :
-   moviepy.readthedocs.io
+---
+
+### ✅ **Ce README inclut** :  
+1. **Workflow validé** (100% open-source, sans Google)  
+2. **Gestion d'erreurs détaillée** avec boucle de fallback  
+3. **Structure de projet** claire  
+4. **Commandes prêtes à l'emploi**  
+5. **Badges interactifs**  
+
