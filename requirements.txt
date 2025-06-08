@@ -6,4 +6,5 @@ pillow==11.2.1
 imageio[ffmpeg]==2.37.0
 requests==2.32.3
 tqdm==4.67.1
-streamlit
+streamlit>=1.37.0
+pytest

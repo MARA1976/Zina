@@ -4,12 +4,14 @@ Copyright © 2024 HikayatData (https://www.hikayatdata.com)
 Licence MIT - https://opensource.org/license/mit/
 """
 
-#test_integration.py
+# test_integration.py
 import os
+import sys
 import time
 from moviepy import CompositeVideoClip
 from moviepy.video.VideoClip import TextClip, ColorClip
 from logger_config import log_error, log_warning
+
 
 def create_test_video(output_path="test_output.mp4"):
     """Crée une vidéo de test avec MoviePy v2.1.2"""
@@ -45,15 +47,17 @@ if __name__ == "__main__":
             print( f"\n✅ Vidéo générée avec succès: {output_file}" )
             print( f"Taille: {size_kb} KB" )
 
-            # Optionnel: demander si on veut supprimer
-            delete = input( "Supprimer le fichier temporaire? (o/n) " ).lower()
-            if delete == 'o':
+            # Dans GitHub Actions, on ne peut pas utiliser input()
+            # On supprime automatiquement le fichier ou on le conserve selon un paramètre
+            if len( sys.argv ) > 1 and sys.argv[1] == "--cleanup":
                 os.remove( output_file )
                 print( "Fichier temporaire nettoyé" )
             else:
-                print( "Fichier conservé: " + output_file )
+                print( f"Fichier conservé: {output_file}" )
         else:
             print( "\n❌ Échec: le fichier vidéo n'a pas été créé" )
+            sys.exit( 1 )  # Code d'erreur pour GitHub Actions
     except Exception as e:
         print( f"\n❌ Erreur pendant l'exécution: {str( e )}" )
+        sys.exit( 1 )  # Code d'erreur pour GitHub Actions
     print( "=== Fin du test ===" )
